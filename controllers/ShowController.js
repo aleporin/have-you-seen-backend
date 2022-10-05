@@ -1,4 +1,4 @@
-const { Show, User } = require('../models')
+const { Show, users } = require('../models')
 
 const CreateShow = async (req, res) => {
   try {
@@ -20,14 +20,14 @@ const CreateShow = async (req, res) => {
 const GetUserShows = async (req, res) => {
   try {
     const show = await Show.findAll({
-      where: { userId: req.params.userId },
+      where: { userId: req.params.user_id },
       include: {
-        model: User,
-        as: 'author',
+        model: users,
+        as: 'new_show',
         attributes: ['username']
       }
     })
-    res.send(Show)
+    res.send(show)
   } catch (e) {
     throw e
   }

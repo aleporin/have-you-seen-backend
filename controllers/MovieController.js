@@ -1,4 +1,4 @@
-const { Movie, User } = require('../models')
+const { Movie, users } = require('../models')
 
 const CreateMovie = async (req, res) => {
   try {
@@ -19,15 +19,15 @@ const CreateMovie = async (req, res) => {
 
 const GetUserMovies = async (req, res) => {
   try {
-    const Movie = await Movie.findAll({
-      where: { userId: req.params.userId },
+    const movie = await Movie.findAll({
+      where: { userId: req.params.user_id },
       include: {
-        model: User,
-        as: 'author',
+        model: users,
+        as: 'new_movie',
         attributes: ['username']
       }
     })
-    res.send(Movie)
+    res.send(movie)
   } catch (e) {
     throw e
   }
