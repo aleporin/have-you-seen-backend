@@ -3,7 +3,8 @@ const cors = require('cors')
 const logger = require('morgan')
 const app = express()
 
-const ShowRouter = require('./routes/ShowRouter')
+// const ShowRouter = require('./routes/ShowRouter')
+const AppRouter = require('./routes/AppRouter')
 
 const PORT = process.env.PORT || 3001
 
@@ -15,7 +16,7 @@ app.use(express.urlencoded({ extended: true }))
 
 // Have to talk about best routing but for now im just making sure they work
 
-app.use('/api/show', ShowRouter)
+app.use('/api', AppRouter)
 // app.use()
 
 app.listen(PORT, () => console.log(`Server Running On Port: ${PORT}`))
