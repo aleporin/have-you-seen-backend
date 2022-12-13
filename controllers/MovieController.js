@@ -19,7 +19,7 @@ const CreateMovie = async (req, res) => {
 
 const GetUserMovies = async (req, res) => {
   try {
-    const Movie = await Movie.findAll({
+    const movie = await Movie.findAll({
       where: { userId: req.params.userId },
       include: {
         model: User,
@@ -27,7 +27,7 @@ const GetUserMovies = async (req, res) => {
         attributes: ['username']
       }
     })
-    res.send(Movie)
+    res.send(movie)
   } catch (e) {
     throw e
   }
